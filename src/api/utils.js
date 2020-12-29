@@ -3,4 +3,8 @@ let urlToId = url => {
   return Number(urlParts[urlParts.length - 2])
 }
 
-export { urlToId }
+let listToQuery = (name, values) => {
+  return values && values.length ? `${name}=` + values.join(`&${name}=`) : ''
+}
+
+export { urlToId, listToQuery }

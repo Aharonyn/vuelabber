@@ -1,3 +1,5 @@
+import { listToQuery } from '@/api/utils'
+
 const getPatientQueryString = ({ filters, options }) => {
   return `?id=${filters.id || ''}&uid=${filters.uid ||
     ''}&uid_lookup=icontains&born_after_date=${filters.bornAfter ||
@@ -70,7 +72,10 @@ const getSeriesQueryString = ({ filters, options }) => {
     ''}&pulse_sequence_name=${filters.pulseSequenceName ||
     ''}&sequence_name=${filters.sequenceName ||
     ''}&patient__id=${filters.patientId ||
-    ''}&header_fields=${filters.headerFields || ''}&page_size=${
+    ''}&header_fields=${filters.headerFields || ''}&${listToQuery(
+    'scanning_sequence',
+    filters.scanningSequence
+  )}&${listToQuery('sequence_variant', filters.sequenceVariant)}&page_size=${
     options.itemsPerPage
       ? options.itemsPerPage != -1
         ? options.itemsPerPage
