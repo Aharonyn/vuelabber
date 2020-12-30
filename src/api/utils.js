@@ -4,7 +4,10 @@ let urlToId = url => {
 }
 
 let listToQuery = (name, values) => {
-  return values && values.length ? `${name}=` + values.join(`&${name}=`) : ''
+  let vals = values ? values : []
+  return vals.map((value) => {
+    return `${name}=${value}`
+  }).join('&')
 }
 
 export { urlToId, listToQuery }

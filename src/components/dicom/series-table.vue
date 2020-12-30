@@ -70,6 +70,32 @@
           </v-dialog>
         </div>
       </template>
+
+      <!-- Scanning Sequence -->
+      <template v-slot:item.scanningSequence="{ item }">
+        <v-chip
+          small
+          v-for="(sequence, index) in item.scanningSequence"
+          :key="index"
+        >
+          <v-avatar :color="scanningSequences[sequence].color">{{
+            sequence
+          }}</v-avatar>
+        </v-chip>
+      </template>
+
+      <!-- Sequence Variants -->
+      <template v-slot:item.sequenceVariant="{ item }">
+        <v-chip
+          small
+          v-for="(variant, index) in item.sequenceVariant"
+          :key="index"
+        >
+          <v-avatar :color="sequenceVariants[variant].color">{{
+            variant
+          }}</v-avatar>
+        </v-chip>
+      </template>
     </v-data-table>
   </v-col>
 </template>
@@ -77,6 +103,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import { formatSpatialResolution } from '@/components/dicom/utils'
+import { scanningSequences, sequenceVariants } from '@/components/mri/utils'
 import ProtocolInformation from './protocol-information.vue'
 import SeriesTableControls from '@/components/dicom/series-table-controls.vue'
 import ScanInfo from '@/components/mri/scan-info.vue'
@@ -90,45 +117,97 @@ export default {
     scanInfoDialog: {},
     studyGroups: {},
     selectedSeries: [],
+    scanningSequences,
+    sequenceVariants,
     headers: [
-      { text: 'Number', value: 'number', width: '5%' },
+      // { text: 'Number', value: 'number' },
       {
         text: 'Description',
         value: 'description',
-        sortable: false,
-        width: '30%'
+        sortable: false
+        // width: '30%'
       },
       {
         text: 'Date',
         value: 'date',
-        align: 'center',
-        width: '12%'
+        align: 'center'
+        // width: '12%'
       },
       {
         text: 'Time',
         value: 'time',
-        align: 'center',
-        width: '12%'
+        align: 'center'
+        // width: '12%'
       },
       {
         text: 'Sequence Type',
         value: 'sequenceType',
         sortable: false,
-        align: 'center',
-        width: '15%'
+        align: 'center'
+        // width: '15%'
       },
       {
         text: 'Spatial Resolution (mm)',
         value: 'spatialResolution',
         sortable: false,
-        align: 'center',
-        width: '16%'
+        align: 'center'
+        // width: '16%'
       },
       {
         text: 'Scan Instance',
         value: 'scanInstance',
-        sortable: false,
-        width: '15%'
+        sortable: false
+        // width: '15%'
+      },
+      {
+        text: 'Pulse Sequence Name',
+        value: 'pulseSequenceName',
+        sortable: true
+      },
+      {
+        text: 'Sequence Name',
+        value: 'sequenceName',
+        sortable: true
+      },
+      {
+        text: 'Manufacturer',
+        value: 'manufacturer',
+        sortable: true
+      },
+      {
+        text: 'Scanning Sequence',
+        value: 'scanningSequence',
+        sortable: true
+      },
+      {
+        text: 'Sequence Variant',
+        value: 'sequenceVariant',
+        sortable: true
+      },
+      {
+        text: 'Echo Time',
+        value: 'echoTime',
+        sortable: true
+      },
+      // {
+      //   text: 'Slice Thickness',
+      //   value: 'sliceThickness',
+      //   sortable: true
+      // },
+      // {
+      //   text: 'Pixel Spacing',
+      //   value: 'pixelSpacing',
+      //   sortable: true
+      // },
+      {
+        text: 'Inversion Time',
+        value: 'inversionTime',
+        sortable: true
+      },
+      {
+        text: 'Repetition Time',
+        value: 'repetitionTime',
+        sortable: true
       }
     ],
     options: {
