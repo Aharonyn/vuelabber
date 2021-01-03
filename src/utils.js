@@ -14,12 +14,14 @@ export function arraysEqual(a, b) {
   return true
 }
 
+export const camelToSnakeCaseWord = word => {
+  return word.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+}
+
 export const camelToSnakeCase = obj => {
   let result = {}
   Object.keys(obj).forEach(
-    key =>
-      (result[key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)] =
-        obj[key])
+    key => (result[camelToSnakeCaseWord(key)] = obj[key])
   )
   return result
 }

@@ -120,44 +120,33 @@ export default {
     scanningSequences,
     sequenceVariants,
     headers: [
-      // { text: 'Number', value: 'number' },
+      { text: 'ID', value: 'id', soratble: true },
       {
         text: 'Description',
         value: 'description',
-        sortable: false
-        // width: '30%'
+        sortable: true
       },
       {
         text: 'Date',
         value: 'date',
         align: 'center'
-        // width: '12%'
       },
       {
         text: 'Time',
         value: 'time',
         align: 'center'
-        // width: '12%'
       },
       {
         text: 'Sequence Type',
         value: 'sequenceType',
         sortable: false,
         align: 'center'
-        // width: '15%'
       },
       {
         text: 'Spatial Resolution (mm)',
         value: 'spatialResolution',
         sortable: false,
         align: 'center'
-        // width: '16%'
-      },
-      {
-        text: 'Scan Instance',
-        value: 'scanInstance',
-        sortable: false
-        // width: '15%'
       },
       {
         text: 'Pulse Sequence Name',
@@ -177,28 +166,18 @@ export default {
       {
         text: 'Scanning Sequence',
         value: 'scanningSequence',
-        sortable: true
+        sortable: false
       },
       {
         text: 'Sequence Variant',
         value: 'sequenceVariant',
-        sortable: true
+        sortable: false
       },
       {
         text: 'Echo Time',
         value: 'echoTime',
         sortable: true
       },
-      // {
-      //   text: 'Slice Thickness',
-      //   value: 'sliceThickness',
-      //   sortable: true
-      // },
-      // {
-      //   text: 'Pixel Spacing',
-      //   value: 'pixelSpacing',
-      //   sortable: true
-      // },
       {
         text: 'Inversion Time',
         value: 'inversionTime',
@@ -208,12 +187,17 @@ export default {
         text: 'Repetition Time',
         value: 'repetitionTime',
         sortable: true
+      },
+      {
+        text: 'Scan Instance',
+        value: 'scanInstance',
+        sortable: false
       }
     ],
     options: {
       itemsPerPage: 25,
       page: 1,
-      sortBy: ['number'],
+      sortBy: ['id'],
       descending: false
     },
     itemsPerPageOptions: [10, 25, 50, -1],

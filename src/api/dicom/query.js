@@ -1,4 +1,5 @@
 import { listToQuery } from '@/api/utils'
+import { camelToSnakeCaseWord } from '@/utils'
 
 const getPatientQueryString = ({ filters, options }) => {
   return `?id=${filters.id || ''}&uid=${filters.uid ||
@@ -82,7 +83,9 @@ const getSeriesQueryString = ({ filters, options }) => {
         : 10000
       : 100
   }&page=${options.page || 1}&ordering=${
-    options.descending ? '-' + options.sortBy : options.sortBy
+    options.descending
+      ? '-' + options.sortBy.map(field => '-' + camelToSnakeCaseWord(field))
+      : options.sortBy.map(camelToSnakeCaseWord)
   }`
 }
 
